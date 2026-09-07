@@ -1,0 +1,74 @@
+{
+  "date": "2026-09-07",
+  "request": "https://api.ipify.org",
+  "method": "Explicit SOCKS5 proxy; output compared privately with tyccc IPv4; wrong credentials tested only in copied client configs",
+  "tls_verification": "enabled; REALITY uses its own verification mechanism",
+  "results": [
+    {
+      "node": "vless-reality",
+      "core": "Xray 26.7.28",
+      "https_exit_matches_tyccc": true,
+      "wrong_credential_request_failed": true,
+      "udp_dns": "not separately tested",
+      "positive_curl_exit": 0,
+      "negative_curl_exit": 35
+    },
+    {
+      "node": "shadowsocks",
+      "core": "sing-box 1.12.22",
+      "https_exit_matches_tyccc": true,
+      "wrong_credential_request_failed": true,
+      "udp_dns": "PASS: UDP DNS answer, transaction ID matched",
+      "positive_curl_exit": 0,
+      "negative_curl_exit": 28
+    },
+    {
+      "node": "vless-ws",
+      "core": "sing-box 1.12.22",
+      "https_exit_matches_tyccc": true,
+      "wrong_credential_request_failed": true,
+      "udp_dns": "not separately tested",
+      "positive_curl_exit": 0,
+      "negative_curl_exit": 35
+    },
+    {
+      "node": "vmess-ws",
+      "core": "Xray 26.7.28",
+      "https_exit_matches_tyccc": true,
+      "wrong_credential_request_failed": true,
+      "udp_dns": "not separately tested",
+      "positive_curl_exit": 0,
+      "negative_curl_exit": 35
+    },
+    {
+      "node": "trojan",
+      "core": "sing-box 1.12.22",
+      "https_exit_matches_tyccc": true,
+      "wrong_credential_request_failed": true,
+      "udp_dns": "not separately tested",
+      "positive_curl_exit": 0,
+      "negative_curl_exit": 35
+    },
+    {
+      "node": "hysteria2",
+      "core": "sing-box 1.12.22",
+      "https_exit_matches_tyccc": true,
+      "wrong_credential_request_failed": true,
+      "udp_dns": "PASS: UDP DNS answer, transaction ID matched",
+      "positive_curl_exit": 0,
+      "negative_curl_exit": 97
+    }
+  ],
+  "backup": {
+    "sqlite_integrity": "ok",
+    "inbounds": 6,
+    "clients": 1,
+    "associations": 6
+  },
+  "limits": [
+    "No throughput benchmark",
+    "No GUI import completion claimed",
+    "Future ACME renewal not yet observed",
+    "Backup restore to live or new host not performed"
+  ]
+}
