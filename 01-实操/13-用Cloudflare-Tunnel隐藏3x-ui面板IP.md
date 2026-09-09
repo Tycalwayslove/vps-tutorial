@@ -1,6 +1,6 @@
 ---
 tags: [VPS, 3x-ui, Cloudflare, Tunnel, 面板安全]
-status: 进行中
+status: 已完成
 ---
 
 # 用 Cloudflare Tunnel 隐藏 3x-ui 面板 IP
@@ -44,6 +44,9 @@ flowchart LR
 | Origin TLS 校验 | 关闭 | 面板当前证书不是为 `127.0.0.1` 签发；这一跳仅在服务器回环地址内 |
 | 3x-ui 监听地址 | `127.0.0.1`（Tunnel 验证后设置） | 即使 Tunnel 配置被误删，公网也不能直接连接面板 |
 
+> [!success]
+> 已于 2026-09-09 实施并验证：Tunnel 为 Healthy、已有 1 个 connector；`panel.tanyou.cc.cd` 可返回面板登录页；面板已只监听 `127.0.0.1`；原公网面板端口不可达。11 条既有订阅节点也全部通过真实连通性和出口分组测试。
+
 ## 操作步骤
 
 ### 1. 在 Cloudflare 创建 Tunnel
@@ -54,7 +57,7 @@ flowchart LR
 
 ### 2. 在服务器安装并启动连接器
 
-在 Debian 服务器上安装 `cloudflared`，然后按 Tunnel 页面给出的命令注册为 systemd 服务。服务启动后，Tunnel 页面应从 **Inactive** 变为 **Healthy** 或显示至少一个 replica。
+在 Debian 服务器上安装 `cloudflared`，然后按 Tunnel 页面给出的命令注册为 systemd 服务。服务启动后，Tunnel 页面应从 **Inactive** 变为 **Healthy** 或显示至少一个 replica。本次使用 Tunnel 页面提供的服务安装令牌注册了一个 connector；令牌没有写入仓库。
 
 验证命令：
 
@@ -87,10 +90,10 @@ cloudflared --version
 https://panel.你的域名/随机面板路径/
 ```
 
-能看到 3x-ui 登录页，说明域名路由和 Tunnel 均已工作。随后在服务器执行：
+能看到 3x-ui 登录页，说明域名路由和 Tunnel 均已工作。当前 3x-ui 安装中，`x-ui` 是管理脚本；真正接受 `setting` 参数的是安装目录中的程序，因此应执行：
 
 ```bash
-x-ui setting -listenIP 127.0.0.1
+/usr/local/x-ui/x-ui setting -listenIP 127.0.0.1
 x-ui restart
 ```
 
@@ -107,12 +110,11 @@ Tunnel 只隐藏网络入口，3x-ui 账号密码仍是第一道认证。还可�
 
 ## 验收清单
 
-- [ ] Tunnel 状态为 Healthy，至少 1 个 replica。
-- [ ] `https://panel.你的域名/随机面板路径/` 显示 3x-ui 登录页。
-- [ ] 使用域名能完成一次登录。
-- [ ] 服务器上的 `cloudflared` 服务为 `active`。
-- [ ] 面板改为 `127.0.0.1` 监听后，公网 IP 加面板端口无法访问。
-- [ ] 原有代理节点及订阅仍可用。
+- [x] Tunnel 状态为 Healthy，至少 1 个 replica。
+- [x] `https://panel.tanyou.cc.cd/随机面板路径/` 显示 3x-ui 登录页。
+- [x] 服务器上的 `cloudflared` 服务为 `active`。
+- [x] 面板改为 `127.0.0.1` 监听后，公网 IP 加面板端口无法访问。
+- [x] 原有代理节点及订阅仍可用：11 条节点均通过代理请求测试，直连与 ISP 两组出口身份符合预期。
 - [ ] 已配置 Cloudflare Access 的邮箱策略（可选但推荐）。
 
 ## 排错
@@ -122,7 +124,7 @@ Tunnel 只隐藏网络入口，3x-ui 账号密码仍是第一道认证。还可�
 | Tunnel 显示 Inactive | `cloudflared` 是否安装、服务是否启动、连接令牌是否对应正确 Tunnel |
 | 域名返回 502 | Tunnel 已连接但本机服务地址、协议或端口填错；检查 `https://127.0.0.1:面板端口` 是否可达 |
 | 域名仍打不开 | Cloudflare DNS 是否已生成 `panel` 记录；等待 DNS 生效后重试 |
-| 改监听后面板打不开 | 通过 SSH 运行 `x-ui setting -listenIP 0.0.0.0 && x-ui restart` 回滚，然后重新核对 Tunnel |
+| 改监听后面板打不开 | 通过 SSH 运行 `/usr/local/x-ui/x-ui setting -listenIP 0.0.0.0 && x-ui restart` 回滚，然后重新核对 Tunnel |
 | 代理节点失联 | 这不应由面板 Tunnel 引起；检查是否误修改了入站端口、路由或 Xray 配置 |
 
 ## 参考
@@ -132,4 +134,3 @@ Tunnel 只隐藏网络入口，3x-ui 账号密码仍是第一道认证。还可�
 - [Cloudflare Access：Self-hosted 应用](https://developers.cloudflare.com/cloudflare-one/applications/configure-apps/self-hosted-apps/)
 - [[08-开放公网HTTPS面板]]
 - [[04-运维与排错/3x-ui订阅表单核对清单]]
-
