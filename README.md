@@ -4,7 +4,7 @@
 
 > 部署与本次验收已完成：tyccc 的订阅现有 11 条节点，分为直连出口与 ISP 出口两组；全部均通过真实出口验证，Shadowsocks 与 Hysteria2 另通过 UDP 测试。面板 v3.7.0，服务端 Xray v26.7.28。精确客户端版本和验证边界见下方第 6 课与第 12 课。
 
-> 当前面板访问方式：2026-09-09 已通过 Cloudflare Tunnel 切换为 `panel.tanyou.cc.cd` 域名入口；面板端口仅监听服务器本机，不能再通过公网 IP 加端口登录。见 [第 13 课](01-实操/13-用Cloudflare-Tunnel隐藏3x-ui面板IP.md)。随机面板路径和凭据保存在仓库外的私人连接信息中。
+> 当前面板访问方式：2026-09-09 已通过 Cloudflare Tunnel 切换为 [`https://panel.tanyou.cc.cd/login`](https://panel.tanyou.cc.cd/login)；面板端口仅监听服务器本机，不能再通过公网 IP 加端口登录。见 [第 13 课](01-实操/13-用Cloudflare-Tunnel隐藏3x-ui面板IP.md)。面板凭据保存在仓库外的私人连接信息中。
 
 ## 怎么阅读
 

@@ -6,7 +6,7 @@ status: 已完成
 # 用 Cloudflare Tunnel 隐藏 3x-ui 面板 IP
 
 > [!summary]
-> 这一课处理的是 **3x-ui 管理面板**，不是代理节点本身。完成后，浏览器访问 `https://panel.你的域名/随机面板路径/`；服务器无需把面板端口暴露给互联网。VLESS、VMess、Trojan、Shadowsocks 与 Hysteria2 的连接地址不会因此自动变成域名。
+> 这一课处理的是 **3x-ui 管理面板**，不是代理节点本身。当前环境的浏览器入口是 `https://panel.tanyou.cc.cd/login`；服务器无需把面板端口暴露给互联网。VLESS、VMess、Trojan、Shadowsocks 与 Hysteria2 的连接地址不会因此自动变成域名。
 
 ## 想解决什么问题
 
@@ -40,12 +40,16 @@ flowchart LR
 | --- | --- | --- |
 | Tunnel 名称 | `tyccc-panel` | 名称只说明用途，不混入节点或客户端名称 |
 | 公网主机名 | `panel.tanyou.cc.cd` | 管理入口独立于根域名，后续可单独迁移或停用 |
+| 面板路径 | `/login` | 容易记忆；路径不再充当隐藏手段，安全依赖账号密码与网络收口 |
 | 本机服务 | `https://127.0.0.1:面板端口` | 请求不再需要从公网进服务器 |
 | Origin TLS 校验 | 关闭 | 面板当前证书不是为 `127.0.0.1` 签发；这一跳仅在服务器回环地址内 |
 | 3x-ui 监听地址 | `127.0.0.1`（Tunnel 验证后设置） | 即使 Tunnel 配置被误删，公网也不能直接连接面板 |
 
 > [!success]
-> 已于 2026-09-09 实施并验证：Tunnel 为 Healthy、已有 1 个 connector；`panel.tanyou.cc.cd` 可返回面板登录页；面板已只监听 `127.0.0.1`；原公网面板端口不可达。11 条既有订阅节点也全部通过真实连通性和出口分组测试。
+> 已于 2026-09-09 实施并验证：Tunnel 为 Healthy、已有 1 个 connector；`https://panel.tanyou.cc.cd/login` 可返回面板登录页；面板已只监听 `127.0.0.1`；原公网面板端口不可达。11 条既有订阅节点也全部通过真实连通性和出口分组测试。
+
+> [!note]
+> 访问 `/login` 时，3x-ui 会自动跳转到带末尾斜杠的实际页面。浏览器会自行完成跳转，因此日常只记住 `/login` 即可。
 
 ## 操作步骤
 
@@ -87,7 +91,7 @@ cloudflared --version
 在浏览器打开：
 
 ```text
-https://panel.你的域名/随机面板路径/
+https://panel.你的域名/login
 ```
 
 能看到 3x-ui 登录页，说明域名路由和 Tunnel 均已工作。当前 3x-ui 安装中，`x-ui` 是管理脚本；真正接受 `setting` 参数的是安装目录中的程序，因此应执行：
@@ -111,7 +115,7 @@ Tunnel 只隐藏网络入口，3x-ui 账号密码仍是第一道认证。还可�
 ## 验收清单
 
 - [x] Tunnel 状态为 Healthy，至少 1 个 replica。
-- [x] `https://panel.tanyou.cc.cd/随机面板路径/` 显示 3x-ui 登录页。
+- [x] `https://panel.tanyou.cc.cd/login` 显示 3x-ui 登录页。
 - [x] 服务器上的 `cloudflared` 服务为 `active`。
 - [x] 面板改为 `127.0.0.1` 监听后，公网 IP 加面板端口无法访问。
 - [x] 原有代理节点及订阅仍可用：11 条节点均通过代理请求测试，直连与 ISP 两组出口身份符合预期。
