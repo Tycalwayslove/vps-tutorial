@@ -106,6 +106,17 @@ x-ui restart
 > [!danger]
 > 这是一项有影响的改动。必须在新域名可登录、且仍保留一个 SSH 会话时执行；不要先执行它再测试 Tunnel。
 
+### 5. 为统一订阅复用同一条 Tunnel
+
+统一订阅服务运行在 `127.0.0.1:2096`，同一条 Tunnel 已新增一条公开主机名：
+
+| 公网域名 | Tunnel 内部服务 | 用途 |
+| --- | --- | --- |
+| `panel.tanyou.cc.cd` | `https://127.0.0.1:46832` | 3x-ui 管理面板 |
+| `sub.tanyou.cc.cd` | `http://127.0.0.1:2096` | 用户统一订阅 |
+
+Cloudflare 负责用户到边缘节点的 HTTPS；Tunnel 再把请求发到服务器本机的 HTTP 订阅服务。因此 `2096` 只监听 `127.0.0.1`，不需要也不应在防火墙中开放。订阅地址包含用户专属标识，不能写入公开笔记。
+
 ### 5. 为面板加第二道登录门（推荐）
 
 Tunnel 只隐藏网络入口，3x-ui 账号密码仍是第一道认证。还可在 **Cloudflare Zero Trust → Access → Applications** 新增 Self-hosted Application，域名填 `panel.你的域名`，策略只允许自己的邮箱。
