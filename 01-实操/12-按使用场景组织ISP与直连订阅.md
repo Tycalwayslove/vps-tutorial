@@ -67,7 +67,7 @@ flowchart LR
 
 因此，本次为五种 TCP 协议各新建一个**同参数、不同端口**的直连入站，并把同一个客户端附加到新入站。客户端的订阅 ID 没变，所以一个订阅地址可以生成全部 11 条分享链接；端口和入站标签不同，所以路由能够区分出口。
 
-Hysteria2 原本就是 UDP 入站，ISP HTTP 出站不能代理 UDP，因此它保留为直连节点。Shadowsocks 同时支持 TCP/UDP：ISP 版只让 TCP 命中 ISP 规则，直连版则两种网络都从 tyccc 直接出去。这个限制来自 HTTP 出站能力，而不是面板遗漏；详见 [[将ISP代理接入tyccc链式出口]] 与 [Xray HTTP 出站文档](https://xtls.github.io/en/config/outbounds/http.html)。
+Hysteria2 原本就是 UDP 入站，ISP HTTP 出站不能代理 UDP，因此它保留为直连节点。Shadowsocks 同时支持 TCP/UDP：ISP 版只让 TCP 命中 ISP 规则，直连版则两种网络都从 tyccc 直接出去。这个限制来自 HTTP 出站能力，而不是面板遗漏；详见 [[11-将ISP代理接入tyccc链式出口]] 与 [Xray HTTP 出站文档](https://xtls.github.io/en/config/outbounds/http.html)。
 
 ## 3x-ui 中实际做了什么
 
@@ -141,4 +141,4 @@ ISP 组多经过一台上游代理，速度略慢是正常现象：它增加了�
 
 新增协议时，先决定它属于哪一个出口组，再同时完成四件事：新入站、客户端附加、防火墙、路由规则。最后用出口查询验证，不要只凭面板流量数字判断。
 
-若 ISP 上游不稳定，先临时停用 ISP 组的路由或入站，直连组仍可用；不要删除客户端身份或整份订阅。撤回链式出口的边界见 [[将ISP代理接入tyccc链式出口]]。
+若 ISP 上游不稳定，先临时停用 ISP 组的路由或入站，直连组仍可用；不要删除客户端身份或整份订阅。撤回链式出口的边界见 [[11-将ISP代理接入tyccc链式出口]]。
