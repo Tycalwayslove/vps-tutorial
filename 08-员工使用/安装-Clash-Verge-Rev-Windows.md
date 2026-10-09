@@ -20,3 +20,7 @@
 这两张是项目[官方快速入门](https://www.clashverge.dev/guide/quickstart.html)的界面截图，仅帮助找位置；示例里的其他服务名称与本手册的线路无关。若提示“配置不含 proxies”，先检查是不是误贴了“原始订阅”。
 
 来源：[项目官方安装说明](https://www.clashverge.dev/guide/)、[官方订阅导入说明](https://www.clashverge.dev/guide/profile.html)。
+
+## 从官方发布页选择其他版本
+
+打开[官方 Releases 页面](https://github.com/clash-verge-rev/clash-verge-rev/releases)，选择标有 **Latest** 的正式版，展开该版本下方的 **Assets**。常见 Windows 电脑选带 `x64-setup.exe` 的文件。标有 **Pre-release**、`rc` 或 `AutoBuild` 的版本先不选；`.sig` 是签名文件，`Source code` 是源码归档，都不是普通用户要安装的文件。官网版本更新后，本手册已存档的离线包不会自动更新。

@@ -23,3 +23,7 @@
 若订阅列表为空，先确认已经更新订阅。Mac 的软件界面与 Windows 版可能略有差异，找相同名称的“订阅分组”和“系统代理”即可。
 
 来源：[v2rayN 官方发布文件说明](https://github.com/2dust/v2rayN/wiki/Release-files-introduction)、[官方订阅说明](https://github.com/2dust/v2rayN/wiki/Description-of-subscription)。图为流程示意。
+
+## 从官方发布页选择其他版本
+
+打开[官方 Releases 页面](https://github.com/2dust/v2rayN/releases)，选择标有 **Latest** 的正式版，展开该版本下方的 **Assets**。Apple 芯片选 `macos-arm64.dmg`；Intel 芯片选 `macos-64.dmg`。标有 **Pre-release**、`rc` 或 `AutoBuild` 的版本先不选；`.sig` 是签名文件，`Source code` 是源码归档，都不是普通用户要安装的文件。官网版本更新后，本手册已存档的离线包不会自动更新。

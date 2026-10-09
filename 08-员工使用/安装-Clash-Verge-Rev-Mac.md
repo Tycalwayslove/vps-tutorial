@@ -26,3 +26,7 @@
 截图取自[项目官方快速入门](https://www.clashverge.dev/guide/quickstart.html)。界面可能随软件版本变化；示例里的其他服务名称与本手册的线路无关。
 
 来源：[Clash Verge Rev 项目](https://github.com/clash-verge-rev/clash-verge-rev)、[官方订阅导入说明](https://www.clashverge.dev/guide/profile.html)。
+
+## 从官方发布页选择其他版本
+
+打开[官方 Releases 页面](https://github.com/clash-verge-rev/clash-verge-rev/releases)，选择标有 **Latest** 的正式版，展开该版本下方的 **Assets**。Apple 芯片选 `aarch64.dmg`；Intel 芯片选 `x64.dmg`。标有 **Pre-release**、`rc` 或 `AutoBuild` 的版本先不选；`.sig` 是签名文件，`Source code` 是源码归档，都不是普通用户要安装的文件。官网版本更新后，本手册已存档的离线包不会自动更新。

@@ -7,3 +7,7 @@ Debian／Ubuntu 使用 `.deb`，Fedora 等使用 `.rpm`。按[项目官方 Linux
 ![Clash Verge Rev 官方订阅导入界面](../Assets/员工使用/Clash-Verge-Rev-订阅导入.png)
 
 截图来自[项目官方快速入门](https://www.clashverge.dev/guide/quickstart.html)，不同 Linux 桌面环境外观可能有所变化。
+
+## 从官方发布页选择其他版本
+
+打开[官方 Releases 页面](https://github.com/clash-verge-rev/clash-verge-rev/releases)，选择标有 **Latest** 的正式版，展开该版本下方的 **Assets**。按处理器架构和发行版选择 `.deb` 或 `.rpm`。标有 **Pre-release**、`rc` 或 `AutoBuild` 的版本先不选；`.sig` 是签名文件，`Source code` 是源码归档，都不是普通用户要安装的文件。官网版本更新后，本手册已存档的离线包不会自动更新。

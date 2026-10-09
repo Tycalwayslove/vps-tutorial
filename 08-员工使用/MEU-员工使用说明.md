@@ -30,21 +30,30 @@
 
 Windows 和 Mac **默认选 v2rayN**；Android 选 v2rayNG，iPhone／iPad 选 Shadowrocket。已经习惯 Clash Verge Rev 的同事可以选它。**一台设备装一款就够了。**
 
-| 设备 | 软件 | 使用哪种订阅格式 | 离线文件 | 官方下载 |
-|---|---|---|---|---|
-| Windows 10/11 | **v2rayN（推荐）** | 原始订阅 | `v2rayN/Windows/v2rayN-windows-64-desktop.zip` | [7.24.9 官方文件](https://github.com/2dust/v2rayN/releases/download/7.24.9/v2rayN-windows-64-desktop.zip) |
-| Windows 10/11 | Clash Verge Rev | Mihomo 订阅 | `Clash-Verge-Rev/Windows/Clash.Verge_2.5.2_x64-setup.exe` | [2.5.2 官方文件](https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v2.5.2/Clash.Verge_2.5.2_x64-setup.exe) |
-| Mac，Apple 芯片 | **v2rayN（推荐）** | 原始订阅 | `v2rayN/macOS/v2rayN-macos-arm64.dmg` | [7.24.9 官方文件](https://github.com/2dust/v2rayN/releases/download/7.24.9/v2rayN-macos-arm64.dmg) |
-| Mac，Intel 芯片 | **v2rayN（推荐）** | 原始订阅 | `v2rayN/macOS/v2rayN-macos-64.dmg` | [7.24.9 官方文件](https://github.com/2dust/v2rayN/releases/download/7.24.9/v2rayN-macos-64.dmg) |
-| Mac，Apple 芯片 | Clash Verge Rev | Mihomo 订阅 | `Clash-Verge-Rev/macOS/Clash.Verge_2.5.2_aarch64.dmg` | [2.5.2 官方文件](https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v2.5.2/Clash.Verge_2.5.2_aarch64.dmg) |
-| Mac，Intel 芯片 | Clash Verge Rev | Mihomo 订阅 | `Clash-Verge-Rev/macOS/Clash.Verge_2.5.2_x64.dmg` | [2.5.2 官方文件](https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v2.5.2/Clash.Verge_2.5.2_x64.dmg) |
-| Android | v2rayNG | 原始订阅 | `v2rayNG/Android/v2rayNG_2.2.6_arm64-v8a.apk` | [2.2.6 官方文件](https://github.com/2dust/v2rayNG/releases/download/2.2.6/v2rayNG_2.2.6_arm64-v8a.apk) |
-| iPhone／iPad | Shadowrocket | 原始订阅 | App Store 安装，无 APK | [App Store 页面](https://apps.apple.com/app/shadowrocket/id932747118) |
-| Linux | Clash Verge Rev | Mihomo 订阅 | 当前未存档 | [官方发布页](https://github.com/clash-verge-rev/clash-verge-rev/releases) |
+| 设备 | 软件 | 使用哪种订阅格式 | 离线文件 | 已存档版本的直达链接 | 官方全部版本 |
+|---|---|---|---|---|---|
+| Windows 10/11 | **v2rayN（推荐）** | 原始订阅 | `v2rayN/Windows/v2rayN-windows-64-desktop.zip` | [7.24.9 官方文件](https://github.com/2dust/v2rayN/releases/download/7.24.9/v2rayN-windows-64-desktop.zip) | [v2rayN Releases](https://github.com/2dust/v2rayN/releases) |
+| Windows 10/11 | Clash Verge Rev | Mihomo 订阅 | `Clash-Verge-Rev/Windows/Clash.Verge_2.5.2_x64-setup.exe` | [2.5.2 官方文件](https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v2.5.2/Clash.Verge_2.5.2_x64-setup.exe) | [Clash Verge Rev Releases](https://github.com/clash-verge-rev/clash-verge-rev/releases) |
+| Mac，Apple 芯片 | **v2rayN（推荐）** | 原始订阅 | `v2rayN/macOS/v2rayN-macos-arm64.dmg` | [7.24.9 官方文件](https://github.com/2dust/v2rayN/releases/download/7.24.9/v2rayN-macos-arm64.dmg) | [v2rayN Releases](https://github.com/2dust/v2rayN/releases) |
+| Mac，Intel 芯片 | **v2rayN（推荐）** | 原始订阅 | `v2rayN/macOS/v2rayN-macos-64.dmg` | [7.24.9 官方文件](https://github.com/2dust/v2rayN/releases/download/7.24.9/v2rayN-macos-64.dmg) | [v2rayN Releases](https://github.com/2dust/v2rayN/releases) |
+| Mac，Apple 芯片 | Clash Verge Rev | Mihomo 订阅 | `Clash-Verge-Rev/macOS/Clash.Verge_2.5.2_aarch64.dmg` | [2.5.2 官方文件](https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v2.5.2/Clash.Verge_2.5.2_aarch64.dmg) | [Clash Verge Rev Releases](https://github.com/clash-verge-rev/clash-verge-rev/releases) |
+| Mac，Intel 芯片 | Clash Verge Rev | Mihomo 订阅 | `Clash-Verge-Rev/macOS/Clash.Verge_2.5.2_x64.dmg` | [2.5.2 官方文件](https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v2.5.2/Clash.Verge_2.5.2_x64.dmg) | [Clash Verge Rev Releases](https://github.com/clash-verge-rev/clash-verge-rev/releases) |
+| Android | v2rayNG | 原始订阅 | `v2rayNG/Android/v2rayNG_2.2.6_arm64-v8a.apk` | [2.2.6 官方文件](https://github.com/2dust/v2rayNG/releases/download/2.2.6/v2rayNG_2.2.6_arm64-v8a.apk) | [v2rayNG Releases](https://github.com/2dust/v2rayNG/releases) |
+| iPhone／iPad | Shadowrocket | 原始订阅 | App Store 安装，无 APK | [App Store 页面](https://apps.apple.com/app/shadowrocket/id932747118) | [App Store](https://apps.apple.com/app/shadowrocket/id932747118) |
+| Linux | Clash Verge Rev | Mihomo 订阅 | 当前未存档 | [官方发布页](https://github.com/clash-verge-rev/clash-verge-rev/releases) | [Clash Verge Rev Releases](https://github.com/clash-verge-rev/clash-verge-rev/releases) |
 
 普通 Windows 电脑选 `x64`。Mac 不知道芯片类型时，点屏幕左上角苹果标志 → **关于本机**：写 Apple 就选 Apple 芯片版，写 Intel 就选 Intel 版。旧版 Clash for Windows 使用“旧版 Clash 订阅”，只能显示兼容的部分节点；新电脑建议装 Clash Verge Rev。
 
 同一软件可以分别添加 `MEU-工作` 和 `tyccc-视频` 两个订阅分组，使用时切换。**切换分组后，还需选中该分组的一条可用节点。**
+
+## 怎样从 GitHub 官方发布页下载
+
+1. 点击表格最后一列的 **Releases**。页面可能有很多版本；优先选标记 **Latest** 的正式版。标记 **Pre-release**、`rc` 或 `AutoBuild` 的版本用于测试，普通同事先不用。当前离线包保存的是表格直达链接所示版本，官网后来更新不代表离线包同步更新。
+2. 进入选中的版本，向下找到并展开 **Assets**。这里列出该版本的安装包；旁边的 `Source code` 是源码归档，不是普通用户要安装的软件。
+3. 按设备选文件：Windows 常见电脑选 `windows-64` 或 `x64-setup.exe`；Apple 芯片 Mac 选 `macos-arm64` 或 `aarch64.dmg`，Intel Mac 选 `macos-64` 或 `x64.dmg`；Android 手机通常选 `arm64-v8a.apk`。Clash Verge Rev 的 Linux 用户按发行版选 `.deb` 或 `.rpm`。`.sig` 是签名文件，不是安装包。
+4. 下载后按下方对应教程安装，并复制本页与客户端相符的订阅格式。若打不开 GitHub，直接使用管理员提供的离线包。
+
+文件名不确定时，先看 [v2rayN 官方发布文件说明](https://github.com/2dust/v2rayN/wiki/Release-files-introduction)，或询问管理员。GitHub 的 [Releases 使用说明](https://docs.github.com/en/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags)解释了如何查找版本。
 
 ## 点进对应教程，照着操作
 

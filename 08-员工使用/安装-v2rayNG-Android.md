@@ -20,3 +20,7 @@
 不要选择“从剪贴板导入分享链接”来导入整条订阅 URL。图为本手册的流程示意，不是软件截图；不同 Android 系统的安装弹窗可能不同。
 
 来源：[v2rayNG 项目与官方发布页](https://github.com/2dust/v2rayNG)、[项目讨论中关于订阅更新的说明](https://github.com/2dust/v2rayNG/issues/4141)。
+
+## 从官方发布页选择其他版本
+
+打开[官方 Releases 页面](https://github.com/2dust/v2rayNG/releases)，选择标有 **Latest** 的正式版，展开该版本下方的 **Assets**。大多数近年的 Android 手机选 `arm64-v8a.apk`；架构不兼容时再查设备芯片类型。标有 **Pre-release**、`rc` 或 `AutoBuild` 的版本先不选；`.sig` 是签名文件，`Source code` 是源码归档，都不是普通用户要安装的文件。官网版本更新后，本手册已存档的离线包不会自动更新。
