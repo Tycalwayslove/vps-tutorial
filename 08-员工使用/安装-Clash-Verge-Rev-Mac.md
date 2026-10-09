@@ -1,6 +1,6 @@
-# Mac：安装 Clash Verge Rev 并导入 MEU
+# Mac：安装 Clash Verge Rev 并导入 MEU 或 tyccc
 
-返回 [软件与订阅总览](MEU-员工使用说明.md)。本软件使用 **Mihomo 订阅**。
+返回 [软件与订阅总览](MEU-员工使用说明.md)。先选 **MEU（工作）**或 **tyccc（视频）**，再复制该线路对应格式的链接。本软件使用 **Mihomo 订阅**。
 
 ## 1. 下载并安装
 
@@ -15,7 +15,7 @@
 
 ## 2. 导入并连接
 
-1. 复制总览顶部的 **Mihomo 订阅**，在软件的 **订阅**页面粘贴并导入。
+1. 复制总览中所选线路的 **Mihomo 订阅**，在软件的 **订阅**页面粘贴并导入。
 2. 点该订阅的**使用**；进入 **代理**页面选一个节点。
 3. 开启**系统代理**，用浏览器测试网页。以后要获取新节点，在订阅页刷新。
 
@@ -23,6 +23,6 @@
 
 ![Clash Verge Rev 官方快速入门中的系统代理界面](../Assets/员工使用/Clash-Verge-Rev-系统代理.png)
 
-截图取自[项目官方快速入门](https://www.clashverge.dev/guide/quickstart.html)。界面可能随软件版本变化；示例里的其他服务名称与 MEU 无关。
+截图取自[项目官方快速入门](https://www.clashverge.dev/guide/quickstart.html)。界面可能随软件版本变化；示例里的其他服务名称与本手册的线路无关。
 
 来源：[Clash Verge Rev 项目](https://github.com/clash-verge-rev/clash-verge-rev)、[官方订阅导入说明](https://www.clashverge.dev/guide/profile.html)。
