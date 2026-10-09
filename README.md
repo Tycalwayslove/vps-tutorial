@@ -22,6 +22,7 @@
 | 深入理解 tyccc 的 VLESS Reality 表单 | [第 15 课：逐字段理解 VLESS + REALITY + RAW](01-实操/15-读懂VLESS-REALITY-RAW入站的每一个字段.md) |
 | 对比 XHTTP 与 TUIC v5 | [第 16 课：新增 XHTTP 与 TUIC 实验入站](01-实操/16-新增XHTTP与TUIC实验入站.md) |
 | 订阅路径轮换或创建每月 100GB 用户 | [第 17 课：订阅路径与每月 100GB](01-实操/17-轮换订阅路径与创建每月100GB订阅.md) |
+| 让 v2rayN、Clash Verge Rev 和旧版 Clash 分别订阅 | [第 22 课：跨客户端订阅格式](01-实操/22-让v2rayN-Mihomo与旧版Clash分别订阅.md) |
 | 检查服务器性能、端口与防护 | [tyccc 性能与暴露面审计](04-运维与排错/tyccc-性能与暴露面审计.md) |
 | 理解域名节点是否真的隐藏 IP | [域名显示与隐藏源站](02-知识点/域名节点显示与隐藏源站IP.md) |
 | 排查 tyccc 节点为什么慢 | [速度慢的定位与选节点](04-运维与排错/tyccc-速度慢的定位与选节点.md) |
