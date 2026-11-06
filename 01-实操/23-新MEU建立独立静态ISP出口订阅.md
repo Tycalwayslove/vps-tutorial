@@ -7,13 +7,13 @@ tags: [MEU, 3x-ui, ISP, 出站, 订阅]
 
 # 第 23 课：给 MEU 单独增加静态 ISP 出口
 
-这次在新 MEU 上增加了一个名为 **ISP 出口（TCP）** 的订阅组。原有的“全线路”和“每月 100GB”订阅仍连接原来的直连入站；新组只包含 5 条独立入站，流量先到 MEU，再从购买的 HTTP 代理离开。三种格式的真实订阅地址和代理凭据保存在仓库外的 `account.md`。
+这次在新 MEU 上增加了一个名为 **ISP 出口（TCP）** 的订阅组。原有的“全线路”和“每月 100GB”订阅仍连接原来的直连入站；新组只包含 5 条独立入站，流量先到 MEU，再从购买的 SOCKS5 代理离开。三种格式的真实订阅地址和代理凭据保存在仓库外的 `account.md`。首次接入的 HTTP 代理在同一天更换为现在的 SOCKS5 代理，订阅地址没有变化。
 
 ```mermaid
 flowchart LR
     A[客户端] --> B[MEU 新建的 5 条 TCP 入站]
     B --> C[3x-ui 按入站标签匹配路由]
-    C --> D[HTTP 类型 ISP 出站]
+    C --> D[SOCKS5 类型 ISP 出站]
     D --> E[目标网站]
     F[原有 8 条入站] --> G[直连出站]
     G --> E
@@ -37,9 +37,9 @@ flowchart LR
 
 每条新入站在**基础配置**里启用、填写上表端口、选择“自定义分享地址”并保持为 MEU 的公网地址；**协议、传输、安全**沿用对应原节点的设置，包括现有的证书或 REALITY 密钥。复制时清空原入站中的客户端列表，避免原订阅用户误入新线路。随后只把 `meu-isp-personal` 这个新客户端绑定到 5 条副本。
 
-Shadowsocks 副本的网络从 `tcp,udp` 改为 `tcp`。本次购买的代理经验证是 **HTTP CONNECT 代理**，Xray 的 HTTP 出站仅承载 TCP；把 UDP 入站也放进组里，会让 Hysteria2、TUIC 等节点显示在订阅中却无法正确走该出口。因此新组不包含这两个 UDP 协议，也暂未纳入实验性质的 XHTTP。
+Shadowsocks 副本的网络从 `tcp,udp` 改为 `tcp`。建组时使用的第一家代理是 HTTP CONNECT，只承载 TCP，因此这组一开始就只包含 TCP 入站。更换后的 SOCKS5 代理已验证 TCP 可用；其 UDP 转发能力没有验收，所以仍不把 Hysteria2、TUIC 放进这个订阅组。实验性质的 XHTTP 也暂未纳入。
 
-在 **Xray 设置 → 出站**增加一项：协议选 `http`，填写代理的地址、端口、用户名和密码，标签设为 `meu-static-isp-http-20261105`。在 **路由**增加规则：`inboundTag` 填 5 条新入站的标签，`network` 填 `tcp`，`outboundTag` 指向上述标签。规则保存后检查是否持久化。账号与密码是服务端秘密，只保存在 MEU 配置和本地 `account.md`，不放进公开教程。
+在 **Xray 设置 → 出站**增加一项：当前协议选 `socks`，填写代理的地址、端口、用户名和密码。在 **路由**增加规则：`inboundTag` 填 5 条新入站的标签，`network` 填 `tcp`，`outboundTag` 指向该出站的标签。规则保存后检查是否持久化。出站标签仍沿用最初创建时带有 `http` 的内部名称；标签只是供路由引用的标识，真正使用哪种协议由 `protocol` 字段决定。账号与密码是服务端秘密，只保存在 MEU 配置和本地 `account.md`，不放进公开教程。
 
 在 **客户端 → 分组**新建 `ISP 出口（TCP）`，创建独立客户端 `meu-isp-personal`，只绑定这 5 条入站并归入此组。当前客户端总流量设为 `0`，表示面板不设限额，流量重置为“从不”；它不继承现有“每月 100GB”客户端的额度。如需限额，应在此客户端上单独设置。新开端口已在 MEU 的 UFW 中允许 TCP；原有端口和防火墙规则保留。
 
@@ -58,16 +58,19 @@ Shadowsocks 副本的网络从 `tcp,udp` 改为 `tcp`。本次购买的代理经
 ## 如何确认 ISP 确实生效
 
 1. 在新订阅中选择任一 ISP 节点，启用客户端代理。
-2. 通过该代理访问 `https://api.ipify.org`，看到的公网出口应为 `86.104.160.158`。这项检查要让查询请求**经过代理**，直接用浏览器访问并不一定能验证当前选中的节点。
+2. 通过该代理访问 `https://api.ipify.org`，看到的公网出口应为 `161.77.197.141`。这项检查要让查询请求**经过代理**，直接用浏览器访问并不一定能验证当前选中的节点。
 3. 改选原有 MEU 直连节点再查，出口应回到 MEU 自身的公网地址。由此可区分两组线路。
 
-本次从 MEU 服务器实测这组凭据可用作 HTTP 代理，并返回预期 ISP 地址；当作 SOCKS5 连接则超时。公网原始订阅返回 5 条节点，Mihomo YAML 返回 5 条，旧版 Clash YAML 返回 2 条。本机实测 Shadowsocks、VLESS WS TLS、VMess WS TLS、Trojan TLS 的出口均为 ISP 地址。VLESS Reality 也用 MEU 服务器上的新版本 Xray 验证成功；本地旧版 Xray 低于该入站设置的最低客户端版本，不能用它的握手失败判断服务器故障。
+首次接入时，从 MEU 服务器确认旧代理支持 HTTP，订阅也通过验证。更换代理时先单独测试新地址：HTTP 代理请求失败，SOCKS5 认证成功，返回 `161.77.197.141`。随后用 MEU 服务器上的 Xray 单独加载 SOCKS5 出站并验证成功，才替换面板中的协议和凭据。旧 ISP 的地址与密码不再用于现行出站。
+
+更换后，公网原始订阅仍返回 5 条节点，Mihomo YAML 返回 5 条，旧版 Clash YAML 返回 2 条。本机实测 Shadowsocks、VLESS WS TLS、VMess WS TLS、Trojan TLS 的出口均为新 ISP 地址。VLESS Reality 也用 MEU 服务器上的新版本 Xray 验证成功；本地旧版 Xray 低于该入站设置的最低客户端版本，不能用它的握手失败判断服务器故障。MEU 的 443/TCP 公网端口可连接，原直连订阅仍返回 8 条节点。
 
 > [!NOTE]
 > ISP 出口只改变目标网站看到的**出口 IP**。订阅中的节点仍连向 MEU 公网 IP；它不隐藏 VPS 的入站地址。订阅 URL 包含客户端的私有标识，拿到地址的人可使用对应额度，请按账号凭据保管。
 
 ## 参考
 
-- [Xray 官方 HTTP 出站配置](https://xtls.github.io/en/config/outbounds/http.html)：HTTP 代理字段和仅支持 TCP 的限制。
+- [Xray 官方 SOCKS 出站配置](https://xtls.github.io/en/config/outbounds/socks.html)：SOCKS5 代理的 `address`、`port`、`user`、`pass` 字段。
+- [Xray 官方 HTTP 出站配置](https://xtls.github.io/en/config/outbounds/http.html)：建组时旧 HTTP 代理的协议与 TCP 限制。
 - [3x-ui 官方出站与路由说明](https://github.com/MHSanaei/3x-ui/blob/main/docs/content/docs/en/operations/outbounds-routing.mdx)：出站标签、按入站匹配和规则顺序。
 - [3x-ui 官方订阅说明](https://github.com/MHSanaei/3x-ui/blob/v3.8.5/docs/content/docs/en/config/subscription.mdx)：订阅与不同格式的输出。
